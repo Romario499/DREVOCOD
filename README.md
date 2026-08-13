@@ -8,7 +8,8 @@ DREVOCOD — репозиторий для формирования бренда
 
 ## Что уже зафиксировано
 
-- смысл и язык бренда;
+- первичный утверждённый источник: [`brand/presentation-text.md`](brand/presentation-text.md);
+- производные документы версии 0.1: [`brand/positioning.md`](brand/positioning.md), [`brand/tone-of-voice.md`](brand/tone-of-voice.md) и [`brand/brand-system.md`](brand/brand-system.md);
 - правила работы с подтверждёнными фактами;
 - базовая структура для будущих материалов сайта, визуальных активов и документации.
 

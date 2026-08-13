@@ -10,6 +10,13 @@
 
 **Spec:** `docs/superpowers/specs/2026-08-13-drevocod-repository-design.md`
 
+## Execution Status
+
+- Tasks 1–4 are completed locally.
+- Task 5 is pending explicit action-time confirmation before any external write.
+- Git initialization occurred during SDD setup. Before the publication-readiness fix commit, the repository had the actual four-commit content history `177defa` → `58030e8` → `217d416` → `61de672` on `main`.
+- Because that history already existed, Task 4's original initialization, staging, and root-commit instructions were superseded by validation-only checks. The completed checklist below records the executed workflow while preserving the original local-first design intent.
+
 ## Global Constraints
 
 - Repository owner is `Romario499`; repository name is exactly `DREVOCOD`.
@@ -39,7 +46,7 @@
 - Consumes: the approved design specification and global constraints.
 - Produces: the stable directory map referenced by all brand documents.
 
-- [ ] **Step 1: Create `.gitignore`**
+- [x] **Step 1: Create `.gitignore`**
 
 Include operating-system files, editor metadata, logs, dependency directories, build output, local environment files, and secrets while keeping tracked Markdown and `.gitkeep` files visible. Required patterns:
 
@@ -59,15 +66,15 @@ build/
 *.local
 ```
 
-- [ ] **Step 2: Create the root README**
+- [x] **Step 2: Create the root README**
 
 Use these sections: `DREVOCOD`, `Код природы. Язык пространства.`, `О проекте`, `Что уже зафиксировано`, `Структура репозитория`, `Правила работы с фактами`, and `Текущий статус`. State that the repository currently stores the brand foundation and preparation materials; do not state that a catalogue, production facility, sales operation, or live website exists.
 
-- [ ] **Step 3: Create scope README files and asset placeholders**
+- [x] **Step 3: Create scope README files and asset placeholders**
 
 `website/README.md` must reserve the directory for future website source. `assets/README.md` must explain the `logo/`, `images/`, and `fonts-reference/` subdirectories and require source/licence information for added assets. `docs/README.md` must reserve the directory for decisions, research, and specifications. Add `.gitkeep` to all three empty asset subdirectories.
 
-- [ ] **Step 4: Verify the scaffold**
+- [x] **Step 4: Verify the scaffold**
 
 Run:
 
@@ -79,7 +86,7 @@ if ($missing) { throw "Missing paths: $($missing -join ', ')" }
 
 Expected: command completes without output or exception.
 
-- [ ] **Step 5: Review the task scope**
+- [x] **Step 5: Review the task scope**
 
 Run `git status --short` if Git is initialized; otherwise list the created paths. Confirm nothing under `sources/` changed.
 
@@ -92,11 +99,11 @@ Run `git status --short` if Git is initialized; otherwise list the created paths
 - Consumes: the complete presentation text recovered from conversation `6a7da98e-4364-83eb-8e6f-bd8b36113ed1`.
 - Produces: the primary verbal source used by `positioning.md`, `tone-of-voice.md`, and `brand-system.md`.
 
-- [ ] **Step 1: Create the presentation document**
+- [x] **Step 1: Create the presentation document**
 
 Copy the recovered text from `# DREVOCOD` through the closing formulation `Природа уже создала код. Мы превращаем его в форму.` Remove only the conversation writing-block wrapper. Preserve all substantive headings, sentences, emphasis, and sequence.
 
-- [ ] **Step 2: Verify source anchors**
+- [x] **Step 2: Verify source anchors**
 
 Run:
 
@@ -109,7 +116,7 @@ if ($missing) { throw "Missing anchors: $($missing -join ', ')" }
 
 Expected: command completes without output or exception.
 
-- [ ] **Step 3: Check the ending and encoding**
+- [x] **Step 3: Check the ending and encoding**
 
 Read the first and final 20 lines with UTF-8 encoding. Confirm the title, slogan, final formulation, and Cyrillic characters are intact.
 
@@ -124,47 +131,50 @@ Read the first and final 20 lines with UTF-8 encoding. Confirm the title, slogan
 - Consumes: `brand/presentation-text.md` and the global unsupported-claim boundaries.
 - Produces: concise positioning, writing guidance, and versioned verbal-system rules for future brand and website work.
 
-- [ ] **Step 1: Create `positioning.md`**
+- [x] **Step 1: Create `positioning.md`**
 
 Include: document status, positioning core, DREVO + CODE meaning, role of material, approach, audience language present in the approved text, principles, and a strict `Границы подтверждённых фактов` section. Qualify the document as a brand platform, not evidence of current products or services.
 
-- [ ] **Step 2: Create `tone-of-voice.md`**
+- [x] **Step 2: Create `tone-of-voice.md`**
 
 Define six qualities: calm, precise, tactile, contemporary, restrained, and human. Add sentence-pattern guidance, preferred vocabulary taken from the presentation text, prohibited hype and unsupported promises, and paired `Допустимо` / `Не допускается` examples.
 
-- [ ] **Step 3: Create `brand-system.md`**
+- [x] **Step 3: Create `brand-system.md`**
 
 Set version `0.1` and include the approved name, main slogan, closing formulation, semantic formula, verbal pillars, vocabulary, content hierarchy, and governance rules. Mark logo, palette, typography, photography, graphics, layout, and motion as unconfirmed visual-system decisions without proposing values.
 
-- [ ] **Step 4: Run the unsupported-claim review**
+- [x] **Step 4: Run the unsupported-claim review**
 
-Search all initial Markdown files for concrete claims involving prices, named products, workshop/factory ownership, capacity, delivery, warranty, certification, years of experience, clients, geography, contacts, or order acceptance. Inspect every match in context; allow a term only when it appears inside an explicit prohibition or boundary statement.
+Run a strict contextual scan across the derived and navigation Markdown documents for concrete claims involving prices, named products, workshop/factory ownership, capacity, delivery, warranty, certification, years of experience, clients, geography, contacts, or order acceptance. Inspect every match in context; allow a term only when it appears inside an explicit prohibition or boundary statement. `brand/presentation-text.md` is explicitly exempt from this claim scan because it is immutable approved source copy verified by whole-document equality against the canonical presentation artifact.
 
-- [ ] **Step 5: Review cross-document consistency**
+- [x] **Step 5: Review cross-document consistency**
 
 Confirm that the slogan, closing formulation, DREVO + CODE meanings, and principles do not conflict across the four brand files.
 
-### Task 4: Initialize and validate the local Git repository
+### Task 4: Validate the initialized local Git repository
 
 **Files:**
-- Modify: local `.git/` metadata only through Git commands.
+- Review: local `.git/` metadata without changing it.
 - Review: every intended project file except read-only `sources/` and local `AGENTS.md` context.
 
 **Interfaces:**
 - Consumes: the complete verified local repository contents from Tasks 1-3.
-- Produces: a clean initial commit on local branch `main`, ready for publication.
+- Produces: a validated four-commit local history on branch `main`, ready for publication.
 
-- [ ] **Step 1: Initialize Git on `main`**
+**Execution note:** Git initialization occurred during SDD setup. The original initialization, staging, and root-commit steps were superseded by validation-only checks of the existing content history through `61de672`; no repository reinitialization or replacement root commit was performed.
+
+- [x] **Step 1: Confirm the existing Git repository on `main`**
 
 Run:
 
 ```powershell
-git init -b main
+git branch --show-current
+git rev-parse --is-inside-work-tree
 ```
 
-Expected: a new local repository with current branch `main`.
+Expected: branch `main` and an existing Git worktree.
 
-- [ ] **Step 2: Inspect the exact untracked scope**
+- [x] **Step 2: Inspect the exact untracked scope**
 
 Run:
 
@@ -175,29 +185,28 @@ git status --short --ignored
 
 Confirm no secrets or unintended files are staged. Keep `AGENTS.md` and `sources/` outside the DREVOCOD publication scope because they are local project context.
 
-- [ ] **Step 3: Stage only intended paths**
+- [x] **Step 3: Validate only the intended tracked paths**
 
 Run:
 
 ```powershell
-git add .gitignore README.md brand website assets docs
-git diff --cached --stat
+git ls-files
 git diff --cached --check
 ```
 
-Expected: only the DREVOCOD scaffold, brand documents, specification, and plan are staged; whitespace check exits successfully.
+Expected: only the DREVOCOD scaffold, brand documents, specification, and plan are tracked; `AGENTS.md` and `sources/` remain outside publication scope; the index contains no staged content.
 
-- [ ] **Step 4: Commit the reviewed initial state**
+- [x] **Step 4: Verify the existing content history**
 
 Run:
 
 ```powershell
-git commit -m "docs: establish DREVOCOD brand foundation"
+git log --oneline --decorate --max-count=4
 ```
 
-Expected: one root commit on `main`.
+Expected: the four content commits `177defa`, `58030e8`, `217d416`, and `61de672`, with `61de672` at `HEAD` before the publication-readiness fix commit.
 
-- [ ] **Step 5: Verify local Git state**
+- [x] **Step 5: Verify local Git state**
 
 Run:
 
@@ -206,7 +215,7 @@ git status --short --branch
 git log --oneline -1
 ```
 
-Expected: branch `main`, no tracked-file changes, and the initial commit visible.
+Expected: branch `main`, no tracked-file changes, no staged changes, and the four-commit content history visible.
 
 ### Task 5: Create and publish the private GitHub repository
 
